@@ -1,0 +1,125 @@
+package Java_DataStructure.day10;
+interface ListInterface{
+	public void add(int i,Integer x);
+	public void append(Integer x);
+	public Integer remove(int i);
+	public boolean removeItem(Integer x);
+	public Integer get(int i);
+	public int indexOf(Integer x);
+	public int size();
+	public boolean isEmpty();
+	public void clear();
+}
+class Node{
+	public Integer item;
+	public Node next;
+	public Node(Integer newItem) {
+		item=newItem;next=null;
+	}
+	public Node(Integer newItem,Node nextNode) {
+		item=newItem;next=nextNode;
+	}
+}
+                             
+public class LinkedList implements ListInterface{
+	private Node head;
+	private int numItems;
+	public LinkedList() {
+		numItems=0;
+		head=new Node(null,null);
+	}
+	
+	public void add(int index, Integer x) {
+		if(index>=0&&index<=numItems) {
+			Node prevNode=getNode(index-1);
+			Node newNode=new Node(x,prevNode.next);
+			prevNode.next=newNode;
+			numItems++;
+		}
+		else {System.out.println("add() error");}
+	}
+	public void append(Integer x) {
+		Node prevNode=head;
+		while(prevNode.next!=null) {
+			prevNode=prevNode.next;
+		}
+		Node newNode=new Node(x,null);
+		prevNode.next=newNode;
+		numItems++;
+	}
+	
+	public Integer remove(int index) {
+		if(index>=0&&index<=numItems-1) {
+			Node prevNode=getNode(index-1);
+			Node currNode=prevNode.next;
+			prevNode.next=currNode.next;
+			numItems--;
+			return currNode.item;
+		}
+		else return null;
+	}
+	public boolean removeItem(Integer x) {
+		Node currNode=head;
+		for(int i=0;i<=numItems-1;i++) {
+			Node prevNode.next;
+			if(currNode.item.compareTo(x)==0) {
+				prevNode.next=currNode.next;
+				numItems--;
+				return true;
+			}
+		}
+		return false;
+	}
+	public Integer get(int index) {
+		if(index>=0&&index<=numItems-1)
+			return getNode(index).item;
+		else return null;
+	}
+	public int indexOf(Integer x) {
+		Node currNode=head;
+		for(int i=0;i<=numItems-1;i++) {
+			currNode=currNode.next;
+			if(currNode.item.compareTo(x)==0)
+				return i;
+		}
+		return -1;
+	}
+	public int size() {
+		return numItems;
+	}
+	public boolean isEmpty() {
+		return numItems==0;
+	}
+	public void clear() {
+		head=new Node(null,null);
+		numItems=0;
+	}
+	private Node getNode(int index) {
+		if(index>=-1&& index<=numItems-1) {
+			Node currNode=head;
+			for(int i=0;i<=index;i++) {
+				currNode=currNode.next;
+				
+			}
+			return currNode;
+		}
+		else return null;
+	}
+	
+	void print() {
+		for(int i=-1;i<numItems;i++) {
+			System.out.print(getNode(i).item+" ");
+		}
+	}
+	public static void main(String [] args) {
+		LinkedList list=new LinkedList();
+		list.add(0,300);
+		list.add(0, 100);
+		list.append(500);
+		list.remove(2);
+		list.append(700);
+		list.remove(1);
+		list.print();
+	}
+	
+}

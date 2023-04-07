@@ -1,0 +1,84 @@
+package Java_DataStructure.day10;
+interface ListInterface{
+	public void add(int i,Integer x);
+	public void append(Integer x);
+	public Integer remove(int i);
+	public boolean removeItem(Integer x);
+	public Integer get(int i);
+	public int indexOf(Integer x);
+	public int size();
+	public boolean isEmpty();
+	public void clear();
+}
+class Node{
+	public Integer item;
+	public Node next;
+	public Node(Integer newItem) {
+		item=newItem;next=null;
+	}
+	public Node(Integer newItem,Node nextNode) {
+		item=newItem;next=nextNode;
+	}
+}
+                             
+public class LinkedList implements ListInterface{
+	private Node head;
+	private int numItems;
+	public LinkedList() {
+		numItems=0;
+		head=new Node(null,null);
+	}
+	
+	public void add(int index, Integer x) {
+		if(index>=0&&index<=numItems) {
+			Node prevNode=getNode(index-1);
+			Node newNode=new Node(x,prevNode.next);
+			prevNode.next=newNode;
+			numItems++;
+		}
+		else {System.out.println("add() error");}
+	}
+	public void append(Integer x) {
+		Node prevNode=head;
+		while(prevNode.next!=null) {
+			prevNode=prevNode.next;
+		}
+		Node newNode=new Node(x,null);
+		prevNode.next=newNode;
+		numItems++;
+	}
+	
+	public Integer remove(int index) {
+		
+	}
+	public boolean removeItem(Integer x) {
+		
+	}
+	public Integer get(int i) {
+		
+	}
+	public int indexOf(Integer x) {
+		
+	}
+	public int size() {
+		
+	}
+	public boolean isEmpty() {
+		
+	}
+	public void clear() {
+		
+	}
+	private Node getNode(int index) {
+		if(index>=-1&&index<=numItems-1) {
+			Node currNode=head;
+			for(int i=0;i<=index;i++) {
+				currNode=currNode.next;
+				return currNode;
+			}
+		}
+		else return null;
+	}
+			
+	}
+}

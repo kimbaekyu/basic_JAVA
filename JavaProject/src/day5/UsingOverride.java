@@ -1,0 +1,18 @@
+package day5;
+
+public class UsingOverride {
+	public static void main(String[] args) {
+		Shape start, last, obj;
+		
+		start = new Line();
+		last =start;
+		obj = new Rect();
+		last.next=obj;
+		last=obj;
+		Shape p =start;
+		while(p!=null) {
+			p.draw();
+			p=p.next;
+		}
+	}
+}

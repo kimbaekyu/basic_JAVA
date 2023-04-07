@@ -1,0 +1,9 @@
+package Java_DataStructure.day10;
+
+public class ListStack<E> implements StackInterface<E> {
+	private ListInterface<E> list;
+	
+	public ListStack() {
+		list=new LinkedList<E>();
+	}
+}
